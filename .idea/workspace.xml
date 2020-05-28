@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c45f2c1-a932-4110-8473-4a8704bd5954" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlignNetworks_EigenAlign.py" beforeDir="false" afterPath="$PROJECT_DIR$/AlignNetworks_EigenAlign.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EigenAlign_matching.py" beforeDir="false" afterPath="$PROJECT_DIR$/EigenAlign_matching.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EigenAlign_nokron.py" beforeDir="false" afterPath="$PROJECT_DIR$/EigenAlign_nokron.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EigenAlign_nokron_xstart.py" beforeDir="false" afterPath="$PROJECT_DIR$/EigenAlign_nokron_xstart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LowRankAlign.py" beforeDir="false" afterPath="$PROJECT_DIR$/LowRankAlign.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Low_rank_Eigen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Low_rank_Eigen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra.py" beforeDir="false" afterPath="$PROJECT_DIR$/runtoyexample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file1.py" beforeDir="false" afterPath="$PROJECT_DIR$/bipartite_Matching.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sparsified_EigenAlign.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparsified_EigenAlign.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtoyexample.py" beforeDir="false" afterPath="$PROJECT_DIR$/runtoyexample.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +88,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="350" y="133" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1589480728218" />
+    <state x="424" y="7" key="CommitChangelistDialog2" timestamp="1590645109906">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="424" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590645109906" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1589500316183">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

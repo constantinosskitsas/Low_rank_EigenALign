@@ -32,14 +32,12 @@ def main(temp1=None):
     Tempxx=(Matching[0])
     dd=len(Tempxx)
 
-    temp1 = np.zeros(len(Tempxx),int)
-    temp2 = np.zeros(len(Tempxx),int)
+    split1 = np.zeros(len(Tempxx),int)
+    split2 = np.zeros(len(Tempxx),int)
     for i in range(dd):
-        hi=Tempxx.pop()
-        temp1[i]=int(hi[0])
-        temp2[i]=int(hi[1])
-    #print(temp1)
-    #print(temp2)
+        tempMatching=Tempxx.pop()
+        split1[i]=int(tempMatching[0])
+        split2[i]=int(tempMatching[1])
         # recovery of correctly aligned nodes (as defined in paper):
     recovery = evaluate_erdosreyni_experiment(G1,G2,temp1,temp2)
     print(recovery)
