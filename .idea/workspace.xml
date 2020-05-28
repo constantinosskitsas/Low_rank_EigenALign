@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c45f2c1-a932-4110-8473-4a8704bd5954" name="Default Changelist" comment="" />
+    <list default="true" id="5c45f2c1-a932-4110-8473-4a8704bd5954" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlignNetworks_EigenAlign.py" beforeDir="false" afterPath="$PROJECT_DIR$/AlignNetworks_EigenAlign.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EigenAlign_matching.py" beforeDir="false" afterPath="$PROJECT_DIR$/EigenAlign_matching.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EigenAlign_nokron.py" beforeDir="false" afterPath="$PROJECT_DIR$/EigenAlign_nokron.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EigenAlign_nokron_xstart.py" beforeDir="false" afterPath="$PROJECT_DIR$/EigenAlign_nokron_xstart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LowRankAlign.py" beforeDir="false" afterPath="$PROJECT_DIR$/LowRankAlign.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Low_rank_Eigen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Low_rank_Eigen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra.py" beforeDir="false" afterPath="$PROJECT_DIR$/runtoyexample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file1.py" beforeDir="false" afterPath="$PROJECT_DIR$/bipartite_Matching.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sparsified_EigenAlign.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparsified_EigenAlign.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +26,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1bPEIJTdJG7YmhCjcIuDbwv5Q5d" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,6 +38,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/REGAL-master (3)/REGAL-master/regal.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -35,7 +52,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="extra" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="runtoyexample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Low_rank_EigenALign" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -47,7 +64,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extra.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\const\PycharmProjects\Low_rank_EigenALign\runtoyexample.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -58,7 +75,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.extra" />
+        <item itemvalue="Python.runtoyexample" />
       </list>
     </recent_temporary>
   </component>

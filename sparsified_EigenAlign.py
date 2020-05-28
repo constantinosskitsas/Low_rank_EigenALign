@@ -2,7 +2,7 @@ import numpy as np
 import scipy
 from scipy.sparse import coo_matrix
 
-import file1
+import bipartite_Matching
 from decomposeX import decomposeX
 
 
@@ -32,6 +32,6 @@ def sparsified_EigenAlign(A, B, c1, c2, c3, iters, topk):
             tempvec += u[i] * V1[:, i]
         w = keep_top_k(tempvec, topk)
         X[rowid, np.find(w)] = w[np.find(w)]
-    ma, mb = file1.edge_list(file1.bipartite_matching(X))
+    ma, mb = bipartite_Matching.edge_list(bipartite_Matching.bipartite_matching(X))
 
     return ma, mb, X

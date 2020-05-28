@@ -6,7 +6,7 @@ from scipy.linalg import lu
 from scipy.linalg._expm_frechet import vec
 
 import decomposeX
-import file1
+import bipartite_Matching
 import newbound_methods
 from greed_match import greedy_match
 from greedy_lowrank_EigenAlign import greedy_lowrank
@@ -38,7 +38,7 @@ def align_networks_eigenalign(A, B, iters, method, bmatch, default_params=True):
         avgdeg1 = map(lambda x: sum(X[x, :] != 0), range(np.shape(X)[0]))
         avgdeg = np.array(list(avgdeg)) #np.fromiter(avgdeg, dtype=np.float)
         avgdeg = np.mean(avgdeg)
-        Matching = file1.edge_list(file1.bipartite_matching(X))  # 1
+        Matching = bipartite_Matching.edge_list(bipartite_Matching.bipartite_matching(X))  # 1
         D = avgdeg;  # nnz(X)/prod(size(X))
         #print(list(Matching))
 

@@ -1,7 +1,7 @@
 import numpy as np
 import spicy
 
-import file1
+import bipartite_Matching
 
 
 def EigenAlign_nokron(A, B, s1, s2, s3, iters):
@@ -82,9 +82,9 @@ def EigenAlign_helper_nokron(A, B, s1, s2, s3, iters):
     # Xmat = Xmat'
     # ej,ei = edge_list(bipartite_matching(sparse(Xmat*100)))
 
-    ej, ei, M = file1.greedy_match(Xmat)
-    ejbp, eibp = file1.edge_list(
-        file1.bipartite_matching(spicy.sparse.csc_matrix(Xmat * 10 ^ (abs(np.log10(np.amax(Xmat)))))))
+    ej, ei, M = bipartite_Matching.greedy_match(Xmat)
+    ejbp, eibp = bipartite_Matching.edge_list(
+        bipartite_Matching.bipartite_matching(spicy.sparse.csc_matrix(Xmat * 10 ^ (abs(np.log10(np.amax(Xmat)))))))
 
     MATCHING = spicy.sparse.csc_matrix(ei, ej, 1, nA, nB)
     weight = X[:].conj() @ MATCHING.conj()[:]

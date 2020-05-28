@@ -7,7 +7,7 @@ import scipy
 from scipy.sparse import coo_matrix
 #TODO: input types
 #TODO: error checks
-from file1 import bipartite_matching, edge_list
+from bipartite_Matching import bipartite_matching, edge_list
 
 
 def EigenAlign_matching(A,B,s1,s2,s3,iters):

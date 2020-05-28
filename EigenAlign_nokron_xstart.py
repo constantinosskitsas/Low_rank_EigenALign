@@ -1,7 +1,7 @@
 
 import numpy as np
 import scipy
-import file1
+import bipartite_Matching
 
 
 def EigenAlign_nokron_xstart(A, B, s1, s2, s3, iters, Xstart):
@@ -62,7 +62,7 @@ def EigenAlign_helper_nokron_xstart(A, B, s1, s2, s3, iters, Xstart):
 
     # or bipartite matching
     Xmat = Xmat.conj()
-    ei, ej = file1.edge_list(file1.bipartite_matching(scipy.sparse.csc_matrix(Xmat)))
+    ei, ej = bipartite_Matching.edge_list(bipartite_Matching.bipartite_matching(scipy.sparse.csc_matrix(Xmat)))
 
     MATCHING = scipy.sparse.csc_matrix(ei, ej, 1, nA, nB)
     weight = X[:].conj() @ MATCHING.conj()[:]
