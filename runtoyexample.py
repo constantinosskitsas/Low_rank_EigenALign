@@ -39,7 +39,7 @@ def main(temp1=None):
         split1[i]=int(tempMatching[0])
         split2[i]=int(tempMatching[1])
         # recovery of correctly aligned nodes (as defined in paper):
-    recovery = evaluate_erdosreyni_experiment(G1,G2,temp1,temp2)
+    recovery = evaluate_erdosreyni_experiment(G1,G2,split1,split2)
     print(recovery)
 if __name__ == "__main__":
 	main()

@@ -66,14 +66,14 @@ def split_balanced_decomposition(Uk, Wk, Vk):
     Ud = np.diag(np.sqrt(abs(np.diag(U))))
     L2 = np.dot(L, Ud)
     Utemp=np.sqrt(np.diag(U))
-    Utemp[np.isnan(Utemp)]=0
-    where_are_NaNs = np.isnan(Utemp)
+    #Utemp[np.isnan(Utemp)]=0
+    #where_are_NaNs = np.isnan(Utemp)
     #for i in range(len(where_are_NaNs)):
       #  if where_are_NaNs[i]==True:
          #   Utemp[where_are_NaNs] = 0
 
     Utemp2=np.divide(1, Utemp)
-    Utemp2[np.isinf(Utemp2)] = 0
+    #Utemp2[np.isinf(Utemp2)] = 0
     U2 = np.dot(np.diag(Utemp2), U)
     Un = np.dot(Uk,L2)
     Vn = np.dot(Vk,U2.transpose())
