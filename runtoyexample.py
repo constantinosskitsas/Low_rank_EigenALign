@@ -25,8 +25,8 @@ def edgelist_to_adjmatrix(edgeList_file):
 
 
 def main(temp1=None):
-    G1=edgelist_to_adjmatrix("data/edges_1.txt")
-    G2=edgelist_to_adjmatrix("data/arenas_orig.txt")
+    G2=edgelist_to_adjmatrix("data/edges_1.txt")
+    G1=edgelist_to_adjmatrix("data/arenas_orig.txt")
     Matching = AlignNetworks_EigenAlign.align_networks_eigenalign(G1, G2, 8, "lowrank_svd_union", 3) # alignment step.
     print((Matching))
     Tempxx=(Matching[0])
@@ -38,7 +38,7 @@ def main(temp1=None):
         tempMatching=Tempxx.pop()
         split1[i]=int(tempMatching[0])
         split2[i]=int(tempMatching[1])
-        # recovery of correctly aligned nodes (as defined in paper):
+       #  recovery of correctly aligned nodes (as defined in paper):
     recovery = evaluate_erdosreyni_experiment(G1,G2,split1,split2)
     print(recovery)
 if __name__ == "__main__":

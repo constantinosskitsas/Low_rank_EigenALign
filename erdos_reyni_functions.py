@@ -1,7 +1,7 @@
 import numpy as np
 import scipy
 from scipy.optimize.optimize import vecnorm
-
+from numpy import linalg as la
 
 def evaluate_erdosreyni_experiment(A, B, ma, mb):
     nA = np.shape(A)[0]
@@ -13,5 +13,5 @@ def evaluate_erdosreyni_experiment(A, B, ma, mb):
     mbtemp=range(nA-1, -1, -1)
     P = scipy.sparse.csc_matrix((temp,(matemp,mbtemp)),shape=(nA, nA)).toarray()
     Ptil = scipy.sparse.csc_matrix((temp1,(ma, mb)),shape=(nA, nA)).toarray()
-    recov = 1 - (vecnorm(P - Ptil, 1) / (2 * nA))
+    recov = (la.norm(P - Ptil,ord=1) / (2 * nA))
     return recov

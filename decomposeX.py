@@ -18,7 +18,7 @@ def decomposeX_balance_allfactors(A, B, k, c1, c2, c3):
         U[:, i] = np.dot(A ,U[:, i + 1])
         mui = np.amax(U[:, i])
         U[:, i] = np.divide(U[:, i], mui)
-        du[i] = du[i + 1] * mui
+        du[i] = np.dot(du[i + 1], mui)
 
     U[:, 0] = u
     rksums = np.zeros(k-1)
@@ -46,7 +46,7 @@ def decomposeX_balance_allfactors(A, B, k, c1, c2, c3):
     hksums = np.zeros(k - 1)
     dv[0] = 1
     for i in range(k-1):
-        hksums[i] = dv[0] * sum(V[:, 1])
+        hksums[i] = dv[0] * sum(V[:, 0])
         V[:, 0] = np.dot(B , V[:, 0])
         mvi = np.amax(V[:, 0])
         V[:, 0] = np.divide(V[:, 0], mvi)
@@ -56,8 +56,6 @@ def decomposeX_balance_allfactors(A, B, k, c1, c2, c3):
 
     rhos = np.copy(du)
     gams = np.copy(dv)
-
-    # create W
 
     W_prev= 1 * rhos[0] * gams[0]
     W1 = 1
@@ -70,11 +68,11 @@ def decomposeX_balance_allfactors(A, B, k, c1, c2, c3):
         localk = i-1
         rk = np.zeros(i)
         rk[0] = rksums[localk]
-        rk[1:i] = usums[-1 -localk:-1]
+        rk[1:i] = usums[len(usums)-localk:]
 
         hk = np.zeros((i))
         hk[0] = hksums[localk]
-        hk[1:i] = vsums[-1 - localk:-1]
+        hk[1:i] = vsums[len(vsums) - localk:]
         Du = np.diag(np.divide(rhos[i], rhos[0:i]))
         Dv = np.diag(np.divide(gams[i], gams[0:i]))
         v1 = np.dot(Dv,hk)
@@ -113,6 +111,9 @@ def decomposeX_balance_allfactors(A, B, k, c1, c2, c3):
         W2 = np.vstack((temp12b, temp34b))
         W_curr = W_curr / W_curr[-1][-1]
         W_prev = W_curr
-
+    print("U")
+    #print(U)
+    print("V")
+   # print(V)
     return U, V, W_prev, W1, W2
 

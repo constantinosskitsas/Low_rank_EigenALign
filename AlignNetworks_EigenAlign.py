@@ -1,6 +1,7 @@
 
 import numpy as np
 import scipy
+from networkx.generators.tests.test_small import null
 from numpy.linalg import svd
 from scipy.linalg import lu
 from scipy.linalg._expm_frechet import vec
@@ -15,6 +16,7 @@ from greedy_lowrank_EigenAlign import greedy_lowrank
 def align_networks_eigenalign(A, B, iters, method, bmatch, default_params=True):
     D = 0
     s1, s2, s3 = find_parameters(A, B)
+
     if not default_params:
         s1 += 100
         s2 += 10
@@ -22,26 +24,33 @@ def align_networks_eigenalign(A, B, iters, method, bmatch, default_params=True):
     c1 = s1 + s2 - 2 * s3
     c2 = s3 - s2
     c3 = s2
-    Uk, Vk, Wk, W1, W2 = decomposeX.decomposeX_balance_allfactors(A, B, iters + 1, c1, c2, c3)
-    Un, Vn = split_balanced_decomposition(Uk, Wk, Vk)
+    print(c1)
+    print(c2)
+    print(c3)
+    Uk, Vk, Wk, W1, W2 = decomposeX.decomposeX_balance_allfactors(A, B, iters + 1, c1, c2, c3) #okay
+    Un, Vn = split_balanced_decomposition(Uk, Wk, Vk) #okay
     timematching = 0
     nA = len(A[0])
     nB = len(B[0])
 
     if method == "lowrank_svd_union":
-        U, S, V = np.linalg.svd(Wk)
-        U1,S1,V1=svd(Wk)
-        U1 = np.dot(np.dot(Uk,U), np.diag(np.sqrt(S)))
-        V1 = np.dot(np.dot(Vk,V ), np.diag(np.sqrt(S)))
-        X = newbound_methods.newbound_rounding_lowrank_evaluation_relaxed(U1, V1, bmatch) * (10 ** 8)  # bmatch
-        avgdeg = map(lambda x: sum(X[x, :] != 0), np.arange(0, np.shape(X)[0], 1))
-        avgdeg1 = map(lambda x: sum(X[x, :] != 0), range(np.shape(X)[0]))
-        avgdeg = np.array(list(avgdeg)) #np.fromiter(avgdeg, dtype=np.float)
-        avgdeg = np.mean(avgdeg)
-        Matching = bipartite_Matching.edge_list(bipartite_Matching.bipartite_matching(X))  # 1
-        D = avgdeg;  # nnz(X)/prod(size(X))
-        #print(list(Matching))
 
+        U, S, Vtemp = np.linalg.svd(Wk)
+        V=Vtemp.transpose()
+        #U1,S1,V1=svd(Wk)
+        U1 = np.dot(np.dot(Uk,U), np.diag(np.sqrt(S)))
+        V1 = np.dot(np.dot(Vk,V), np.diag(np.sqrt(S)))
+        X = newbound_methods.newbound_rounding_lowrank_evaluation_relaxed(U1, V1, bmatch) * (10 ** 8)  # bmatch
+        #nzi,nzj,nzv=newbound_methods.newbound_rounding_lowrank_evaluation_relaxed(U1, V1, bmatch)#alternative
+        #nzv=nzv* (10 ** 8)#alternative
+        #m,n,val,noute,match1 = bipartite_Matching(bipartite_Matching.bipartite_matching1(nzi,nzj,nzv))
+        avgdeg = map(lambda x: sum(X[x, :] != 0), np.arange(0, np.shape(X)[0], 1))#keep
+        #avgdeg1 = map(lambda x: sum(X[x, :] != 0), range(np.shape(X)[0]))
+        avgdeg = np.array(list(avgdeg)) #np.fromiter(avgdeg, dtype=np.float)#keep
+        avgdeg = np.mean(avgdeg)#keep
+        Matching = bipartite_Matching.edge_list(bipartite_Matching.bipartite_matching(X))  # 1
+        #D = avgdeg;  # nnz(X)/prod(size(X))
+        print(list(Matching))
     else:
         print(
             "method should be one of the following: (1)eigenalign,(2)lowrank_unbalanced_best, (3)lowrank_unbalanced_union,(4)lowrank_balanced_best, (5)lowrank_balanced_union,(6)lowrank_Wkdecomposed_best, (7)lowrank_Wkdecomposed_union")
@@ -51,10 +60,15 @@ def align_networks_eigenalign(A, B, iters, method, bmatch, default_params=True):
 def find_parameters(A, B):
     nB = len(B[0])
     nA = len(A[0])
-    nmatches = np.sum(A) * np.sum(B)
-    nmismatches = np.sum(A) * ((nB ** 2) - np.sum(B)) + np.sum(B) * ((nA ** 2) - np.sum(A))
-    mygamma = nmatches / nmismatches
-    myalpha = (1 / mygamma) + 1
+    myalpha = (nB ** 2 - np.sum(B)) / np.sum(B) + (nA ** 2 - np.sum(A)) / np.sum(A)+1
+    #nmatches = np.sum(A) * np.sum(B)
+    #temp=np.sum(B)*((nB ** 2)- np.sum(A))
+    #temp1=(nA ** 2)
+    #nmismatches = np.sum(A) * (temp - np.sum(B)) + (temp1 )
+    #print(nmatches)
+    #print(nmismatches)
+   # mygamma = nmatches / nmismatches
+    #myalpha = (1 / mygamma) + 1
     myeps = 0.001
     s1 = myalpha + myeps
     s2 = 1 + myeps
