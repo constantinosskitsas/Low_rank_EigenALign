@@ -35,7 +35,8 @@ def bipartite_matching_primal_dual(rp, ci, ai, tripi, m, n):
     match2 = np.zeros(( m + n), int)
     tmod = np.zeros(( m + n), int)
     ntmod = 0
-
+    m=m-1
+    n=n-1
     # initialize the primal and dual variables
     for i in range(m):
         for rpi in range(rp[i], rp[i + 1]):
@@ -47,6 +48,7 @@ def bipartite_matching_primal_dual(rp, ci, ai, tripi, m, n):
     i = 0
     while i <= m:
         print("primal2")
+        print(i)
         for j in range(ntmod):
             t[tmod[j]] = 0
 
@@ -61,9 +63,9 @@ def bipartite_matching_primal_dual(rp, ci, ai, tripi, m, n):
             for rpi in range(rp[k], rp[k+1]):
                 print("primal4")
                 j = ci[rpi]
-                if ai[rpi] < alpha[k] + bt[j] - 1e-8:
-                    continue
-                if t[j] == 0:
+                if ai[rpi] < alpha[k] + bt[j] - 1e-7:
+                   continue
+                elif t[j] == 0:
                     tail = tail + 1
                     if tail <= m:
                         queue[tail] = match2[j]
@@ -81,6 +83,7 @@ def bipartite_matching_primal_dual(rp, ci, ai, tripi, m, n):
                             j = temp
                         break
             head = head + 1
+        print("hi")
         if match1[i] < 1:
             theta = np.math.inf
             for j in range(head-1):
@@ -91,13 +94,13 @@ def bipartite_matching_primal_dual(rp, ci, ai, tripi, m, n):
                     t2 = ci[rpi]
                     if t[t2] == 0 and alpha[t1] + bt[t2] - ai[rpi] < theta:
                         theta = alpha[t1] + bt[t2] - ai[rpi]
-
+            print("primal8")
             for j in range(head - 1):
                 alpha[queue[j]] -= theta
 
             for j in range(ntmod):
                 bt[tmod[j]] += theta
-            continue
+            #continue
 
         i = i + 1
     print("primal half")
@@ -111,8 +114,8 @@ def bipartite_matching_primal_dual(rp, ci, ai, tripi, m, n):
     for i in range(m):
         if match1[i] <= n:
             noute = noute + 1
-
-    return m,n,val,noute,match1
+    return match1 #for now
+   # return m,n,val,noute,match1
 
 
 
@@ -170,8 +173,59 @@ def bipartite_matching_setup(nzi,nzj,nzv):
 
 
 
+def bipartite_matching_setup1(nzi,nzj,nzv):
+
+    nedges = len(nzi)-1
+    m = len(nzi)-1
+    n = len(nzj)-1
+    rp = np.ones((m + 1+1), int)  # csr matrix with extra edges
+    ci = np.zeros((nedges + m+2), int)
+    ai = np.zeros((nedges + m+2), int)
+    tripi = np.zeros( (nedges + m+2),int)
+# 1. build csr representation with a set of extra edges from vertex i to
+# vertex m+i
+
+    rp[0] = 0
+    for i in range(nedges):
+        rp[nzi[i] + 1] = rp[nzi[i] + 1] + 1
+
+
+    rp = np.cumsum(rp)
+    for i in range(nedges):
+        tripi[rp[nzi[i]]+1]=i
+        ai[rp[nzi[i]] + 1] = nzv[i]
+        ci[rp[nzi[i]] + 1] = nzj[i]
+        rp[nzi[i]] = rp[nzi[i]] + 1
+
+    for i in range(m): # add the extra edges
+        tripi[rp[i] + 1] = -1
+        ai[rp[i] + 1] = 0
+        ci[rp[i] + 1] = n + i
+        rp[i] = rp[i] + 1
+
+    for i in range(m - 1, -1, -1):
+        rp[i + 1] = rp[i]
+
+    rp[0] = 0
+    rp = rp+ 1
+# restore the row pointer array
+    colind = np.zeros((m + n), int)
+# check for duplicates in the data
+    for i in range(m):
+        for rpi in range(rp[i],rp[i+1]):
+            if colind[ci[rpi]] == 1:
+                print("error -bipartite_matching:duplicateEdge")
+
+            colind[ci[rpi]] = 1
+
+
+        for rpi in range(rp[i],rp[i+1]):
+            colind[ci[rpi]] = 0
+
+    bipartite_matching_primal_dual(rp, ci, ai, tripi, m, n)
+
 def bipartite_matching1(nzi,nzj,nzv):
-    return bipartite_matching_setup(nzi,nzj,nzv)
+    return bipartite_matching_setup1(nzi,nzj,nzv)
 
 
 
